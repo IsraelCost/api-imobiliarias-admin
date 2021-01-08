@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { Edit, Trash } from '@styled-icons/boxicons-regular';
 import { Gallery } from '@styled-icons/remix-fill';
+import { Global } from '@styled-icons/remix-line';
 
 export const Actions = styled.td`
   height: ${ props => {
@@ -38,4 +39,12 @@ export const IconGallery = styled(Gallery)`
   margin: auto 9rem;
   cursor: pointer;
   display: ${props => props.list === 'imoveis' ? 'block' : 'none'};
+`;
+
+export const IconGlobalUrl = styled(Global)`
+  position: absolute;
+  width: 4rem;
+  margin: auto 9rem;
+  cursor: pointer;
+  display: ${ props => props.list === 'imobiliarias' ? 'block' : 'none' };
 `;

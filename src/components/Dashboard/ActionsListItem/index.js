@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Actions } from './styles';
 
-import { IconEdit, IconTrash, IconGallery } from './styles';
+import { IconEdit, IconTrash, IconGallery, IconGlobalUrl } from './styles';
 
 import Modal from '../Modal/index';
 
@@ -20,6 +20,7 @@ export default class ActionsListItem extends React.Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.closeErrorModal = this.closeErrorModal.bind(this);
     this.toggleGalleryFormModal = this.toggleGalleryFormModal.bind(this);
+    this.copyMenuUrlToClipboard = this.copyMenuUrlToClipboard.bind(this);
   }
 
   async updateItem() {
@@ -43,6 +44,11 @@ export default class ActionsListItem extends React.Component {
 
   toggleGalleryFormModal() {
     this.setState({ openGalleryModalForm: !this.state.openGalleryModalForm });
+  }
+
+  copyMenuUrlToClipboard() {
+    const url = `http://18.234.94.15/menu?condominio=${ this.props.condominioKey }&imobiliaria=${ this.props.itemId }`;
+    alert(`A url para o menu é: ${url}`);
   }
 
   render() {
@@ -72,6 +78,7 @@ export default class ActionsListItem extends React.Component {
           <IconGallery list={ this.props.list } onClick={ this.toggleGalleryFormModal } />
           <IconEdit onClick={ this.updateItem } />
           <IconTrash onClick={ this.deleteItem } />
+          <IconGlobalUrl list={ this.props.list } onClick={ this.copyMenuUrlToClipboard } />
         </Actions>
         { generateErrorModal() }
         { GalleryModalForm() }
