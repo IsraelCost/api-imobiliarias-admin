@@ -2,24 +2,26 @@ import React from 'react';
 
 import { Actions } from './styles';
 
-import { IconEdit, IconTrash, IconGallery, IconGlobalUrl } from './styles';
+import { IconEdit, IconTrash, IconGallery, IconGlobalUrl, IconImobi } from './styles';
 
 import Modal from '../Modal/index';
 
 import ErrorModal from '../ErrorModal/index';
 
 import GalleryImovelFormModal from '../GalleryImovelFormModal/index';
+import ImobiModalForm from '../ImobiModalForm/index';
 
 import api from '../../../services/api';
 
 export default class ActionsListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { error: false, errorModalMessage: '', openGalleryModalForm: false };
+    this.state = { error: false, errorModalMessage: '', openGalleryModalForm: false, openImobiFormModal: false };
     this.updateItem = this.updateItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.closeErrorModal = this.closeErrorModal.bind(this);
     this.toggleGalleryFormModal = this.toggleGalleryFormModal.bind(this);
+    this.toggleImobiFormModal = this.toggleImobiFormModal.bind(this);
     this.copyMenuUrlToClipboard = this.copyMenuUrlToClipboard.bind(this);
   }
 
@@ -44,6 +46,10 @@ export default class ActionsListItem extends React.Component {
 
   toggleGalleryFormModal() {
     this.setState({ openGalleryModalForm: !this.state.openGalleryModalForm });
+  }
+
+  toggleImobiFormModal() {
+    this.setState({ openImobiFormModal: !this.state.openImobiFormModal });
   }
 
   copyMenuUrlToClipboard() {
@@ -72,6 +78,16 @@ export default class ActionsListItem extends React.Component {
       ) : null;
     };
 
+    const GenerateImobiModalForm = () => {
+      return this.state.openImobiFormModal ? (
+        <Modal 
+          componentToRender={ ImobiModalForm }
+          componentProps={{ idImovel: this.props.itemId }}
+          closeModal={ this.toggleImobiFormModal }
+        />
+      ) : null;
+    };
+
     return (
       <>
         <Actions list={ this.props.list }>
@@ -79,9 +95,11 @@ export default class ActionsListItem extends React.Component {
           <IconEdit onClick={ this.updateItem } />
           <IconTrash onClick={ this.deleteItem } />
           <IconGlobalUrl list={ this.props.list } onClick={ this.copyMenuUrlToClipboard } />
+          <IconImobi list={ this.props.list } onClick={ this.toggleImobiFormModal } />
         </Actions>
         { generateErrorModal() }
         { GalleryModalForm() }
+        { GenerateImobiModalForm() }
       </>
     );
   }

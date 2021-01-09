@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Edit, Trash } from '@styled-icons/boxicons-regular';
+import { Edit, Trash, BuildingHouse } from '@styled-icons/boxicons-regular';
 import { Gallery } from '@styled-icons/remix-fill';
 import { Global } from '@styled-icons/remix-line';
 
@@ -47,4 +47,13 @@ export const IconGlobalUrl = styled(Global)`
   margin: auto 9rem;
   cursor: pointer;
   display: ${ props => props.list === 'imobiliarias' ? 'block' : 'none' };
+`;
+
+export const IconImobi = styled(BuildingHouse)`
+  color: #2b2742;
+  position: absolute;
+  width: 4rem;
+  margin: auto 14rem;
+  cursor: pointer;
+  display: ${ props => props.list === 'imoveis' ? 'block' : 'none' };
 `;
