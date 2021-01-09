@@ -54,6 +54,9 @@ class ListView extends React.Component {
       let response = await api.get(`/condominios/${this.props.condominioKey}/${this.state.listOpened}`);
       if (response.data.length === 0) {
         response = await api.get(`/condominios/default/${this.state.listOpened}`);
+        if (this.state.listOpened === 'imobiliarias') {
+          response = await api.get(`/imobiliarias`);
+        }
       }
       this.setState({ itemsToList: response.data, showList: true });
     } catch (err) {
