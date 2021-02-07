@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getToken } from './auth';
 
 const api = axios.create({
-  baseURL: 'https://api.houzes.com.br/'
+  baseURL: 'https://app.houzes.com.br/'
 });
 
 api.interceptors.request.use(async config => {
