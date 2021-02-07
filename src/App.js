@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import GlobalStyles from "./styles/Global.js";
 
 import Routes from "./routes";
